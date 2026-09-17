@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background Monolith Container -->
+  <rect width="64" height="64" rx="14" fill="#000000" />
+  <rect width="62" height="62" x="1" y="1" rx="13" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.5" />
+
+  <!-- Ambient Crimson Radial Glow -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#DC2626" stop-opacity="0.5" />
+    <stop offset="100%" stop-color="#DC2626" stop-opacity="0" />
+  </radialGradient>
+  <circle cx="32" cy="34" r="24" fill="url(#glow)" />
+
+  <!-- Monolithic Faceted V Emblem -->
+  <!-- Left Wing (White) -->
+  <path d="M14 15 H25.5 L32 35.5 L32 49 Z" fill="#FFFFFF" />
+
+  <!-- Right Wing (Crimson Red) -->
+  <path d="M50 15 H38.5 L32 35.5 L32 49 Z" fill="#EF4444" />
+
+  <!-- Center Vertex Shadow Accent -->
+  <line x1="32" y1="35.5" x2="32" y2="49" stroke="#000000" stroke-width="1.2" opacity="0.4" />
+</svg>
