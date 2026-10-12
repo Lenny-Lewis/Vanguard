@@ -1,10 +1,26 @@
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import MobileMenu from './MobileMenu'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation()
+  const [showBackdrop, setShowBackdrop] = useState(pathname !== '/')
+
+  useEffect(() => {
+    const updateBackdrop = () => {
+      setShowBackdrop(pathname !== '/' || window.scrollY >= window.innerHeight)
+    }
+
+    updateBackdrop()
+    window.addEventListener('scroll', updateBackdrop, { passive: true })
+    window.addEventListener('resize', updateBackdrop)
+    return () => {
+      window.removeEventListener('scroll', updateBackdrop)
+      window.removeEventListener('resize', updateBackdrop)
+    }
+  }, [pathname])
 
   const navLinks = [
     { name: 'Projects', href: '/projects' },
@@ -15,7 +31,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 w-full px-6 sm:px-10 lg:px-16 py-5 lg:py-7 flex items-center justify-between bg-transparent transition-all duration-300">
+      <header className={`fixed top-0 left-0 right-0 z-10 isolate w-full px-6 sm:px-10 lg:px-16 py-5 lg:py-7 flex items-center justify-between transition-all duration-300 ${showBackdrop ? 'bg-gradient-to-b from-black/85 via-black/55 to-transparent backdrop-blur-sm' : 'bg-transparent backdrop-blur-none'}`}>
         {/* Brand Name */}
         <Link
           to="/"

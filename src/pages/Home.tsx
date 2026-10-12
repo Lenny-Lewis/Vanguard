@@ -298,9 +298,6 @@ export default function Home() {
       <section className="w-full px-6 sm:px-10 lg:px-16 py-24 lg:py-32 border-t border-white/10 bg-gradient-to-b from-neutral-950 to-black">
         <div className="max-w-7xl mx-auto">
           <RevealSection className="border border-white/15 bg-black/80 p-10 sm:p-16 lg:p-20 relative overflow-hidden">
-            {/* Ambient Red Glow in CTA */}
-            <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
-
             <div className="relative z-10 max-w-2xl">
               <span className="text-xs uppercase tracking-[0.3em] text-red-400 font-semibold block mb-4">
                 Ready to lead?

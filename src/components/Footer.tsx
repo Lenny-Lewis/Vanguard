@@ -98,17 +98,25 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-white/40">
             <p>© {new Date().getFullYear()} VANGUARD COLLECTIVE. All rights reserved.</p>
             <span className="hidden sm:inline text-white/20">•</span>
-            <p>
-              Developed by{' '}
-              <a
-                href="https://lennoxlewis.co.ke"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-red-400 font-medium underline underline-offset-4 decoration-red-500/50 hover:decoration-red-400 transition-colors"
-              >
-                Lennox Lewis
-              </a>
-            </p>
+            <div className="flex items-center gap-2">
+              <p>
+                Developed by{' '}
+                <a
+                  href="https://lennoxlewis.co.ke"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-red-400 font-medium underline underline-offset-4 decoration-red-500/50 hover:decoration-red-400 transition-colors"
+                >
+                  Lennox Lewis
+                </a>
+              </p>
+              <img
+                src="/Signatures/signature_L_white.png"
+                alt="Lennox Lewis signature"
+                className="w-16 h-auto opacity-80"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className="flex items-center gap-6 text-white/30 text-xs">
