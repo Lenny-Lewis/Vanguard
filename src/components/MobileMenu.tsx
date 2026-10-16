@@ -84,7 +84,7 @@ export default function MobileMenu({ menuOpen, setMenuOpen, navLinks }: MobileMe
       <div className="text-center text-white/40 text-[10px] tracking-widest uppercase pb-2">
         © {new Date().getFullYear()} VANGUARD • DEVELOPED BY{' '}
         <a
-          href="https://lennoxlewis.cp.ke"
+          href="https://lennoxlewis.co.ke"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-red-400 underline underline-offset-2 transition-colors"
