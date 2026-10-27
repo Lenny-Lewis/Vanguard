@@ -59,7 +59,7 @@ export default function Projects() {
                 <div className="relative overflow-hidden bg-neutral-950 border border-white/10 aspect-[4/3] mb-5">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={project.imageAlt ?? project.title}
                     className="w-full h-full object-cover grayscale-[25%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                     loading="lazy"
                   />

@@ -5,20 +5,23 @@ import Projects from './pages/Projects'
 import Studio from './pages/Studio'
 import Offerings from './pages/Offerings'
 import Inquire from './pages/Inquire'
+import SiteLoader from './components/SiteLoader'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/studio" element={<Studio />} />
-          <Route path="/offerings" element={<Offerings />} />
-          <Route path="/inquire" element={<Inquire />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <SiteLoader>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/studio" element={<Studio />} />
+            <Route path="/offerings" element={<Offerings />} />
+            <Route path="/inquire" element={<Inquire />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </SiteLoader>
   )
 }

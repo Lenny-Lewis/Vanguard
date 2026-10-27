@@ -5,6 +5,7 @@ export interface Project {
   category: string
   year: string
   image: string
+  imageAlt?: string
   description: string
   stats?: string
 }
@@ -16,7 +17,8 @@ export const projects: Project[] = [
     client: 'Aura Robotics Group',
     category: 'Immersive Web / 3D',
     year: '2026',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop',
+    imageAlt: 'White humanoid robot illustrating Aura Kinetics’ robotics and immersive digital experience',
     description: 'Autonomous kinetic systems platform redefining human-machine physical interfaces.',
     stats: '+180% Engagement',
   },
@@ -27,6 +29,7 @@ export const projects: Project[] = [
     category: 'Brand Identity & Film',
     year: '2025',
     image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop',
+    imageAlt: 'Sports car representing automotive brand identity and cinematic campaign work',
     description: 'Electric hypercar branding, cinematic reveal campaign, and bespoke typography system.',
     stats: 'Global Red Dot Winner',
   },
@@ -36,7 +39,8 @@ export const projects: Project[] = [
     client: 'Synthetic Intelligence Co',
     category: 'Digital Product Design',
     year: '2026',
-    image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542641633-cec279921f6b?q=80&w=1200&auto=format&fit=crop',
+    imageAlt: 'Laptop displaying mobile app interface designs, representing digital product design',
     description: 'A revolutionary spatial computing workspace built for autonomous neural architectures.',
     stats: '$42M Series A Raised',
   },
@@ -46,7 +50,8 @@ export const projects: Project[] = [
     client: 'Atelier de Geneve',
     category: 'Editorial & Packaging',
     year: '2025',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1200&auto=format&fit=crop',
+    imageAlt: 'Close-up of a wristwatch highlighting the craftsmanship behind Chrono Vault’s timepiece editorial',
     description: 'Exclusive luxury timepiece archive with tactile micro-interactions and tactile unboxing.',
     stats: 'Sold Out in 4 Hours',
   },

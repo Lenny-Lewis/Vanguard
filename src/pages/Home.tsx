@@ -154,9 +154,14 @@ export default function Home() {
                 <Link to="/projects" className="block relative overflow-hidden bg-neutral-950 border border-white/10 aspect-[16/10] mb-5">
                   <img
                     src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                    srcSet={[480, 800, 1200].map((width) => `${project.image.replace('w=1200', `w=${width}`)} ${width}w`).join(', ')}
+                    sizes="(min-width: 1280px) 616px, (min-width: 768px) 50vw, 100vw"
+                    alt={project.imageAlt ?? project.title}
+                    width={1200}
+                    height={750}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                   {project.stats && (
