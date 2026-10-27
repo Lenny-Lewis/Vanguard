@@ -2,10 +2,31 @@ import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Component } from '@/components/ui/loader-2'
 
+const entryKey = 'vanguard:entered'
+let enteredThisPage = false
+
+function shouldShowLoader() {
+  if (enteredThisPage) return false
+  try {
+    return sessionStorage.getItem(entryKey) !== 'true'
+  } catch {
+    // Navigation timing still distinguishes reloads if browser storage is blocked.
+    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined
+    return !navigation || navigation.type === 'navigate'
+  }
+}
+
 export default function SiteLoader({ children }: { children: ReactNode }) {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(shouldShowLoader)
 
   useEffect(() => {
+    if (!loading) return
+    enteredThisPage = true
+    try {
+      sessionStorage.setItem(entryKey, 'true')
+    } catch {
+      // The in-memory flag still prevents replay during client-side navigation.
+    }
     const startedAt = performance.now()
     let minimumTimer: ReturnType<typeof setTimeout>
 
@@ -24,7 +45,7 @@ export default function SiteLoader({ children }: { children: ReactNode }) {
       clearTimeout(fallbackTimer)
       window.removeEventListener('load', finish)
     }
-  }, [])
+  }, [loading])
 
   useEffect(() => {
     if (!loading) return

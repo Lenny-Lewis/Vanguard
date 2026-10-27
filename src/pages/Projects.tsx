@@ -1,17 +1,18 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import SplitText from '../components/SplitText'
 import RevealSection from '../components/RevealSection'
 import { projects, type Project } from '../data/projects'
 
+const categories = ['All', ...new Set(projects.map((project) => project.category))]
+
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All')
 
-  const categories = ['All', 'Brand Identity & Film', 'Digital Product Design', 'Immersive Web / 3D', 'Editorial & Packaging']
-
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter((p) => p.category.toLowerCase().includes(activeFilter.toLowerCase()) || activeFilter.toLowerCase().includes(p.category.toLowerCase()))
+    : projects.filter((project) => project.category === activeFilter)
 
   return (
     <div className="w-full bg-black text-white pt-28 sm:pt-36 pb-24 lg:pb-32 px-6 sm:px-10 lg:px-16">
@@ -38,6 +39,8 @@ export default function Projects() {
               <button
                 key={cat}
                 type="button"
+                aria-pressed={activeFilter === cat}
+                aria-controls="project-results"
                 onClick={() => setActiveFilter(cat)}
                 className={`px-4 py-2 text-xs uppercase tracking-widest transition-all duration-300 ${
                   activeFilter === cat
@@ -51,10 +54,13 @@ export default function Projects() {
           </RevealSection>
         </div>
 
-        {/* Projects Grid (Stagger Children) */}
-        <RevealSection stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        <p role="status" aria-live="polite" className="text-xs text-white/50 mb-6">
+          {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+        </p>
+        {/* Filtered cards stay visible immediately, including when restoring All. */}
+        <div id="project-results" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {filteredProjects.map((project: Project) => (
-            <div key={project.id} className="group flex flex-col justify-between">
+            <Link to={`/projects/${project.id}`} key={project.id} className="group flex h-full flex-col justify-between focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400">
               <div>
                 <div className="relative overflow-hidden bg-neutral-950 border border-white/10 aspect-[4/3] mb-5">
                   <img
@@ -77,11 +83,7 @@ export default function Projects() {
                   <span className="text-white/40">{project.year}</span>
                 </div>
 
-                <SplitText
-                  text={project.title}
-                  as="h2"
-                  className="font-podium text-white uppercase text-2xl sm:text-3xl tracking-wide group-hover:text-red-300 transition-colors"
-                />
+                <h2 className="font-podium text-white uppercase text-2xl sm:text-3xl tracking-wide group-hover:text-red-300 transition-colors">{project.title}</h2>
 
                 <p className="text-white/60 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
                   {project.description}
@@ -89,14 +91,14 @@ export default function Projects() {
               </div>
 
               <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-white/40 text-xs tracking-wider">Client: {project.client}</span>
+                <span className="text-white/60 text-xs tracking-wider">View project & service</span>
                 <span className="w-7 h-7 flex items-center justify-center rounded-full border border-white/20 group-hover:border-white group-hover:bg-white/10 transition-colors">
                   <ArrowUpRight className="w-3.5 h-3.5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
-        </RevealSection>
+        </div>
       </div>
     </div>
   )

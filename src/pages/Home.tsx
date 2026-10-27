@@ -151,7 +151,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {projects.slice(0, 4).map((project, index) => (
               <RevealSection key={project.id} delay={index * 0.1} className="group flex flex-col">
-                <Link to="/projects" className="block relative overflow-hidden bg-neutral-950 border border-white/10 aspect-[16/10] mb-5">
+                <Link to={`/projects/${project.id}`} aria-label={`View ${project.title} project and service details`} className="block relative overflow-hidden bg-neutral-950 border border-white/10 aspect-[16/10] mb-5">
                   <img
                     src={project.image}
                     srcSet={[480, 800, 1200].map((width) => `${project.image.replace('w=1200', `w=${width}`)} ${width}w`).join(', ')}

@@ -15,8 +15,9 @@ shadcn-compatible imports a consistent home. Class merging is in `src/lib/utils.
 `className` prop. `src/components/ui/demo.tsx` shows standalone usage. No images,
 providers, or external state are needed; the SVG shapes are the animation itself.
 
-`src/components/SiteLoader.tsx` displays it over the mounted app on each initial
-page load, including direct links. It stays visible for at least three seconds and waits
+`src/components/SiteLoader.tsx` displays it on the first entry in a tab's browsing
+session, including direct links. A sessionStorage flag prevents replay on reloads,
+returning home, or back/forward navigation. It stays visible for at least three seconds and waits
 for the window load event, with a five-second fallback for slow external media.
 Client-side navigation does not restart it. The overlay matches Vanguard's black,
 white, and red palette, scales spacing for mobile, announces loading to assistive

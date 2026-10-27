@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { ArrowUpRight, CheckCircle2, Mail, MapPin, Clock } from 'lucide-react'
 import SplitText from '../components/SplitText'
 import RevealSection from '../components/RevealSection'
+import { projects } from '../data/projects'
+import { projectBudgetBands, projectServices } from '../data/projectServices'
 
 export default function Inquire() {
+  const [searchParams] = useSearchParams()
+  const selectedProject = projects.find((project) => project.id === searchParams.get('project'))
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Brand Identity & Visual System',
+    projectType: selectedProject ? projectServices[selectedProject.id].inquiryType : 'Brand Identity & Visual System',
     budget: '$50,000 - $100,000',
-    message: '',
+    message: selectedProject ? `I'm interested in ${projectServices[selectedProject.id].name}, inspired by ${selectedProject.title}.\n\nMy goals: \nPreferred launch date: ` : '',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -134,10 +139,7 @@ export default function Inquire() {
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full bg-neutral-950 border border-white/15 px-4 py-3.5 text-sm text-white focus:outline-none focus:border-white/60 transition-colors cursor-pointer"
                       >
-                        <option value="$30,000 - $50,000">$30,000 - $50,000</option>
-                        <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                        <option value="$100,000 - $250,000">$100,000 - $250,000</option>
-                        <option value="$250,000+">$250,000+</option>
+                        {projectBudgetBands.map((band) => <option key={band} value={band}>{band}</option>)}
                       </select>
                     </div>
                   </div>
